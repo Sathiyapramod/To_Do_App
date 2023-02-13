@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import Appbar from "./Components/Appbar";
+import ToDoList from "./Components/ToDoList";
+import Footer from "./Components/Footer";
+import {Routes,Route} from 'react-router-dom';
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="d-flex flex-column container-fluid">
+        <Appbar />
+        <div className="container-fluid bg-light p-3 contentList">
+          <Routes>
+            <Route path="/" element={<ToDoList />} />
+          </Routes>
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 }

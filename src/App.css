@@ -32,7 +32,27 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.contentList {
+  height: 100vh;
+  
+}
+.card{
+  cursor: pointer;
+}
+
+.content {
+  height: 100vh;
+}
+
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  position: fixed;
 }
