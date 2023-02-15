@@ -16,13 +16,13 @@ function Appbar() {
   const [mode, setMode] = useState(true);
   const themeChange = createTheme({
     palette: {
-      mode: mode ? "dark" : "light",
+      mode: mode ? "light" : "dark",
     },
   });
   return (
     <ThemeProvider theme={themeChange}>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+        <AppBar position="static" color="secondary">
           <Toolbar>
             <IconButton
               size="large"
@@ -36,9 +36,12 @@ function Appbar() {
                 To Do App
               </Link>
             </Typography>
+            <Button color="inherit">HOME</Button>
+            <Button color="inherit">About</Button>
+            <Button color="inherit">Content</Button>
             <WbSunnyIcon />
             <Button color="inherit">
-              <Switch onClick={() => setMode(!mode)} color='success'/>
+              <Switch onClick={() => setMode(!mode)} color="success" />
             </Button>
             <NightlightRoundIcon />
           </Toolbar>

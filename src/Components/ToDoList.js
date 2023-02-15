@@ -1,26 +1,34 @@
 import React, { useState } from "react";
 import Fade from "react-reveal/Fade";
-import { useNavigate } from "react-router-dom";
-import { Card } from "@mui/material";
+import { Card, CardContent } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Divider from "@mui/material/Divider";
 import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
-import { DeleteStyling, EditStyling } from "./General";
-import BorderColorRoundedIcon from "@mui/icons-material/BorderColorRounded";
+import { DeleteStyling } from "./General";
+import EditOptions from "./EditOptions";
 
 function ToDoList() {
   const [toDo, setToDo] = useState("");
   const [toDoList, setList] = useState([]);
-  const navigate = useNavigate();
+
   const cardColors = ["#feff9c", "#7afcff", "#FBD489", "#E5CAAF"];
   const rotAngle = ["10deg", "-10deg", "-12deg", "12deg"];
+
+  const editItem = (item,index)=>{
+    console.log(item,index);
+    console.log(toDoList);
+    toDoList[index]=item;
+    setList([...toDoList]);
+    console.log(toDoList);
+  }
   const DeleteItem = (item) => {
     const newTodos = toDoList.filter((element) => {
       return element !== item;
     });
     setList(newTodos);
   };
+
   return (
     <div>
       <Fade text>
@@ -73,16 +81,15 @@ function ToDoList() {
                   }}
                   className="gap-2 m-3 p-3 rounded-2 word-wrap card"
                 >
+                <CardContent>
+                  <Typography variant="h5">
+                    Task-{index+1}
+                  </Typography>
+                </CardContent>
                   {element}
                   <Divider />
                   <span>
-                    <Button
-                      style={EditStyling}
-                      startIcon={<BorderColorRoundedIcon />}
-                      onClick={() => {
-                        navigate("/edit");
-                      }}
-                    />
+                    <EditOptions value={element} editItem={editItem} index={index} />
                     <Button
                       startIcon={<DeleteIcon />}
                       style={DeleteStyling}
@@ -90,6 +97,7 @@ function ToDoList() {
                         alert("Are you Sure Want to Delete ?");
                         DeleteItem(element);
                       }}
+                      color="info"
                     />
                   </span>
                 </Card>
