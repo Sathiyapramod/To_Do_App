@@ -31,3 +31,17 @@ export const themeStyling = {
     color:'white'
    }
 }
+
+export const sampleTasks = [
+    "Have Medicines",
+    "Call Steve and remind for Budget workings !",
+    "Get Groceries at 8pm from John Store",
+    "Make Coffee for Grandma",
+    "Check Email at 9PM",
+    "Review Cost Workings for Q2 review","Have Medicines",
+    "Call Steve and remind for Budget workings !",
+    "Get Groceries at 8pm from John Store",
+    "Make Coffee for Grandma",
+    "Check Email at 9PM",
+    "Review Cost Workings for Q2 review",
+]

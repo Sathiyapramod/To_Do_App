@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Fade from "react-reveal/Fade";
-import { Card, CardContent } from "@mui/material";
+import { Card } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Divider from "@mui/material/Divider";
 import { Typography } from "@mui/material";
@@ -8,11 +8,12 @@ import Button from "@mui/material/Button";
 import { DeleteStyling } from "./General";
 import EditOptions from "./EditOptions";
 import { themeStyling } from "./General";
+import PaginationResult from "./Pagination";
+import { sampleTasks } from "./General";
 
 function ToDoList() {
   const [toDo, setToDo] = useState("");
   const [toDoList, setList] = useState([]);
-
   const cardColors = ["#feff9c", "#7afcff", "#FBD489", "#E5CAAF"];
   const rotAngle = ["10deg", "-10deg", "-12deg", "12deg"];
 
@@ -25,6 +26,16 @@ function ToDoList() {
       return element !== item;
     });
     setList(newTodos);
+  };
+
+  const [page, setPage] = useState(1);
+
+  const paginatedList = (index) => {
+    setPage(index);
+    //first 8 element = arr.slice(0,9)
+    //second 8 elements = arr.slice(10,19)
+    const newList = toDoList.slice((index - 1) * 10, index + 9);
+    setList(newList);
   };
 
   return (
@@ -58,7 +69,7 @@ function ToDoList() {
       </Fade>
       <Fade bottom>
         <div className="d-flex flex-row flex-wrap">
-          {toDoList.length > 0 && toDo !== "" && toDoList.length < 12 ? (
+          {toDoList.length > 0 && toDoList.length < 8 ? (
             toDoList.map((element, index) => {
               return (
                 <Card
@@ -79,9 +90,6 @@ function ToDoList() {
                   }}
                   className="gap-2 m-3 p-3 rounded-2 word-wrap card"
                 >
-                  <CardContent>
-                    <Typography variant="h5">Task-{index + 1}</Typography>
-                  </CardContent>
                   {element}
                   <Divider />
                   <span>
@@ -103,12 +111,7 @@ function ToDoList() {
                 </Card>
               );
             })
-          ) : (
-            <div className="mx-auto d-flex flex-row justify-content-center align-items-center">
-              <Typography variant="h5"> 😊 No New Tasks made !!</Typography>
-            </div>
-          )}
-          {toDoList.length > 8 ? setList([]) : ""}
+          ) : "" }
         </div>
       </Fade>
     </div>
