@@ -23,8 +23,8 @@ function Appbar() {
   });
 
   const [isMenuToggled, setIsMenuToggled] = useState(false);
-  // console.log(isMenuToggled);
   const isDesktop = useMediaQuery("(min-Width : 768px)");
+  console.log(isDesktop);
   return (
     <ThemeProvider theme={themeChange}>
       {isDesktop ? (
