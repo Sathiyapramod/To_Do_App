@@ -49,9 +49,13 @@
 .content {
   height: 100vh;
 }
-.footer{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items:center ;
+
+.popupmenubar{
+  width: 150px;
+  height: 300px;
+  top:0px;
+  bottom:0px;
+  right:0px;
+  background-color:#0e2c71;
+  z-index: 1;
 }

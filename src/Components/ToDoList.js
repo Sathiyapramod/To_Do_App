@@ -7,6 +7,7 @@ import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import { DeleteStyling } from "./General";
 import EditOptions from "./EditOptions";
+import { themeStyling } from "./General";
 
 function ToDoList() {
   const [toDo, setToDo] = useState("");
@@ -15,13 +16,10 @@ function ToDoList() {
   const cardColors = ["#feff9c", "#7afcff", "#FBD489", "#E5CAAF"];
   const rotAngle = ["10deg", "-10deg", "-12deg", "12deg"];
 
-  const editItem = (item,index)=>{
-    console.log(item,index);
-    console.log(toDoList);
-    toDoList[index]=item;
+  const editItem = (item, index) => {
+    toDoList[index] = item;
     setList([...toDoList]);
-    console.log(toDoList);
-  }
+  };
   const DeleteItem = (item) => {
     const newTodos = toDoList.filter((element) => {
       return element !== item;
@@ -30,7 +28,7 @@ function ToDoList() {
   };
 
   return (
-    <div>
+    <div style={themeStyling.content}>
       <Fade text>
         <Typography variant="h3">WELCOME , USER </Typography>
       </Fade>
@@ -81,15 +79,17 @@ function ToDoList() {
                   }}
                   className="gap-2 m-3 p-3 rounded-2 word-wrap card"
                 >
-                <CardContent>
-                  <Typography variant="h5">
-                    Task-{index+1}
-                  </Typography>
-                </CardContent>
+                  <CardContent>
+                    <Typography variant="h5">Task-{index + 1}</Typography>
+                  </CardContent>
                   {element}
                   <Divider />
                   <span>
-                    <EditOptions value={element} editItem={editItem} index={index} />
+                    <EditOptions
+                      value={element}
+                      editItem={editItem}
+                      index={index}
+                    />
                     <Button
                       startIcon={<DeleteIcon />}
                       style={DeleteStyling}
