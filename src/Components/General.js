@@ -24,7 +24,7 @@ export const themeStyling = {
    bgm: {
     backgroundImage: `url(${Imageurl})`,
     backgroundSize: 'cover',
-    backgroundRepeat:'norepeat'
+    backgroundRepeat:'norepeat',
    },
    content:{
     backgroundColor:'rgb(0,0,0,0)',

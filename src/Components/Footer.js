@@ -15,8 +15,8 @@ function Footer() {
       {isDesktop ? (
         <Box sx={{ flexGrow: 1 }}>
           <AppBar
-            position="static"
             sx={{
+              position: "static",
               backgroundColor: "#000000",
               height: 100,
               color: "black",

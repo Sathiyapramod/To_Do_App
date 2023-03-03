@@ -31,7 +31,7 @@ function Appbar() {
         <Box sx={{ flexGrow: 1 }}>
           <AppBar
             position="static"
-            sx={{ backgroundColor: mode ? "#ffab43" : "dark" }}
+            sx={{ backgroundColor: mode ? "navy" : "dark" }}
           >
             <Toolbar>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -54,7 +54,7 @@ function Appbar() {
         <Box sx={{ flexGrow: 1 }}>
           <AppBar
             position="static"
-            sx={{ backgroundColor: mode ? "#ffab43" : "dark" }}
+            sx={{ backgroundColor: mode ? "navy" : "dark" }}
           >
             <Toolbar>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>

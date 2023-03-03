@@ -39,7 +39,7 @@ function ToDoList() {
   };
 
   return (
-    <div style={themeStyling.content}>
+    <div style={themeStyling.content} className="final-content">
       <Fade text>
         <Typography variant="h3">WELCOME , USER </Typography>
       </Fade>
@@ -68,50 +68,50 @@ function ToDoList() {
         </div>
       </Fade>
       <Fade bottom>
-        <div className="d-flex flex-row flex-wrap">
-          {toDoList.length > 0 && toDoList.length < 8 ? (
-            toDoList.map((element, index) => {
-              return (
-                <Card
-                  key={index}
-                  elevation={12}
-                  sx={{
-                    width: 200,
-                    height: 200,
-                    fontSize: 20,
-                    backgroundColor:
-                      cardColors[
-                        Math.floor(Math.random(1, cardColors.length - 1) * 10)
-                      ],
-                    rotate:
-                      rotAngle[
-                        Math.floor(Math.random(1, rotAngle.length - 1) * 10)
-                      ],
-                  }}
-                  className="gap-2 m-3 p-3 rounded-2 word-wrap card"
-                >
-                  {element}
-                  <Divider />
-                  <span>
-                    <EditOptions
-                      value={element}
-                      editItem={editItem}
-                      index={index}
-                    />
-                    <Button
-                      startIcon={<DeleteIcon />}
-                      style={DeleteStyling}
-                      onClick={() => {
-                        alert("Are you Sure Want to Delete ?");
-                        DeleteItem(element);
-                      }}
-                      color="info"
-                    />
-                  </span>
-                </Card>
-              );
-            })
-          ) : "" }
+        <div className="d-flex flex-row flex-wrap final-content">
+          {toDoList.length > 0 && toDoList.length < 8
+            ? toDoList.map((element, index) => {
+                return (
+                  <Card
+                    key={index}
+                    elevation={12}
+                    sx={{
+                      width: 200,
+                      height: 200,
+                      fontSize: 20,
+                      backgroundColor:
+                        cardColors[
+                          Math.floor(Math.random(1, cardColors.length - 1) * 10)
+                        ],
+                      rotate:
+                        rotAngle[
+                          Math.floor(Math.random(1, rotAngle.length - 1) * 10)
+                        ],
+                    }}
+                    className="gap-2 m-3 p-3 rounded-2 word-wrap card"
+                  >
+                    {element}
+                    <Divider />
+                    <span>
+                      <EditOptions
+                        value={element}
+                        editItem={editItem}
+                        index={index}
+                      />
+                      <Button
+                        startIcon={<DeleteIcon />}
+                        style={DeleteStyling}
+                        onClick={() => {
+                          alert("Are you Sure Want to Delete ?");
+                          DeleteItem(element);
+                        }}
+                        color="info"
+                      />
+                    </span>
+                  </Card>
+                );
+              })
+            : ""}
         </div>
       </Fade>
     </div>
