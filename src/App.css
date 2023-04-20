@@ -46,6 +46,7 @@
 }
 
 .contentList {
+
   min-height: 100vh;
 }
 
@@ -54,6 +55,7 @@
 }
 
 .final-content {
+  padding-top: 6rem;
   min-height: 100%;
 }
 
@@ -175,7 +177,7 @@
   height: 15rem;
 }
 
-.logo{
+.logo {
   border-radius: 50%;
 }
 
