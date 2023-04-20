@@ -1,37 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Divider from "@mui/material/Divider";
 import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import { DeleteStyling } from "./General";
+import { backendAPI } from "./General";
 import EditOptions from "./EditOptions";
 
 function ToDoList() {
   const [toDo, setToDo] = useState("");
   const [toDoList, setList] = useState([]);
-  const cardColors = ["#feff9c", "#7afcff", "#FBD489", "#E5CAAF"];
-  const editItem = (item, index) => {
-    toDoList[index] = item;
-    setList([...toDoList]);
-  };
-  const DeleteItem = (item) => {
-    const newTodos = toDoList.filter((element) => {
-      return element !== item;
-    });
-    setList(newTodos);
-  };
-
   const [page, setPage] = useState(1);
+  const cardColors = ["#feff9c", "#7afcff", "#FBD489", "#E5CAAF"];
 
-  const paginatedList = (index) => {
-    setPage(index);
-    //first 8 element = arr.slice(0,9)
-    //second 8 elements = arr.slice(10,19)
-    const newList = toDoList.slice((index - 1) * 10, index + 9);
-    setList(newList);
-  };
-
+  useEffect(() => {
+    fetch(`${backendAPI}/lists`)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        setList(result);
+      });
+  }, []);
   return (
     <div className="final-content">
       <Typography variant="h3">WELCOME , USER </Typography>
@@ -59,11 +49,11 @@ function ToDoList() {
         </Button>
       </div>
       <div className="d-flex flex-row flex-wrap final-content">
-        {toDoList.length > 0 && toDoList.length < 8
+        {toDoList
           ? toDoList.map((element, index) => {
               return (
                 <Card
-                  key={index}
+                  key={element._id}
                   elevation={12}
                   sx={{
                     width: 200,
@@ -76,20 +66,15 @@ function ToDoList() {
                   }}
                   className="gap-2 m-3 p-3 rounded-2 word-wrap card"
                 >
-                  {element}
+                  {element.task}
                   <Divider />
                   <span>
-                    <EditOptions
-                      value={element}
-                      editItem={editItem}
-                      index={index}
-                    />
+                    {/* <EditOptions value={element} index={index} /> */}
                     <Button
                       startIcon={<DeleteIcon />}
                       style={DeleteStyling}
                       onClick={() => {
                         alert("Are you Sure Want to Delete ?");
-                        DeleteItem(element);
                       }}
                       color="info"
                     />

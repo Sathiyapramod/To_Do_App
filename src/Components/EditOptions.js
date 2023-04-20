@@ -46,7 +46,7 @@ function EditOptions({ value, editItem, index }) {
             defaultValue={value}
             onChange={(event) => {
               event.preventDefault();
-              editItem(event.target.value, index);
+              console.log(event.target.value, index);
             }}
           />
           <span className="d-flex flex-row justify-content-between align-items-center">

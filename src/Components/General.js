@@ -1,3 +1,5 @@
+export const backendAPI = "http://localhost:4000";
+
 export const DeleteStyling ={
     position:'relative',
     top:'55px',
