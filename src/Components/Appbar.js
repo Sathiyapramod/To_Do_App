@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TextField } from "@mui/material";
 import SearchOffOutlinedIcon from "@mui/icons-material/SearchOffOutlined";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import useMediaQuery from "../hooks/useMediaQuery";
@@ -16,12 +16,12 @@ function Appbar() {
     },
   });
 
-  const isDesktop = useMediaQuery("(min-Width : 1024px)");
+  const isDesktop = useMediaQuery("(min-Width : 768px)");
   const [isMenuToggled, setMenuToggled] = useState(false);
 
   return (
     <div>
-      {!isDesktop ? (
+      {isDesktop ? (
         <div className="navbar">
           <div className="logo">LOGO</div>
           <div className="menu-items">
