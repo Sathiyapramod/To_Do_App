@@ -46,8 +46,7 @@
 }
 
 .contentList {
-  height: 100vh;
-
+  min-height: 100vh;
 }
 
 .card {
@@ -161,6 +160,12 @@
 .responsive-buttons:hover {
   transform: scale(1.2);
 }
+
+.task-card {
+  width: 15rem;
+  height: 15rem;
+}
+
 
 @media screen and (max-width:1200px) and (min-width:150px) {
   .footer>span {

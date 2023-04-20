@@ -11,7 +11,7 @@ function App() {
         <Appbar />
         <div
           className="container-fluid bg-light p-3 contentList"
-          style={themeStyling.bgm}
+          // style={themeStyling.bgm}
         >
           <ToDoList />
         </div>
