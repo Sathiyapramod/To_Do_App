@@ -11,11 +11,6 @@ import logo from "../assets/Sathiya.png";
 
 function Appbar() {
   const [mode, setMode] = useState(true);
-  const themeChange = createTheme({
-    palette: {
-      mode: mode ? "light" : "dark",
-    },
-  });
 
   const isDesktop = useMediaQuery("(min-Width : 768px)");
   const [isMenuToggled, setMenuToggled] = useState(false);
@@ -24,9 +19,9 @@ function Appbar() {
     <div>
       {isDesktop ? (
         <div className="navbar">
-          <div className="logo"></div>
+          <div className="logo ps-2 fs-5 fw-bolder">To Do</div>
           <div className="menu-items">
-            {["HOME", "ABOUT", "PROJECT", "CONTACT"].map((element, index) => {
+            {["HOME", "ABOUT", "PROJECTS"].map((element, index) => {
               return (
                 <a
                   href={element}
@@ -47,7 +42,7 @@ function Appbar() {
           </div>
         </div>
       ) : (
-        <div className="navbar">
+        <div className="navbar ps-2 pe-2">
           <div className="logo">
             <img src={logo} width="50" height="50" alt="logo" />
           </div>
@@ -79,7 +74,7 @@ function Appbar() {
               </Button>
             </div>
             <div className="toggled-menu-lists">
-              {["HOME", "ABOUT", "PROJECT", "CONTACT"].map((element, index) => {
+              {["HOME", "ABOUT", "PROJECT"].map((element, index) => {
                 return (
                   <div key={index} className="menu-links">
                     <a href={element} rel="noreferrer" className="menu-links">
