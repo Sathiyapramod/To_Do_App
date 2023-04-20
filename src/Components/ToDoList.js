@@ -28,7 +28,7 @@ function ToDoList() {
 
   return (
     <div className="final-content">
-      <Typography variant="h3">WELCOME , USER </Typography>
+      <span className="fs-1 fw-bold ">WELCOME , USER </span>
       <div className="mx-auto d-flex flex-row justify-content-center align-items-center">
         <div className=" d-flex flex-row justify-content-center align-items-center col col-sm-4 col-md-6 col-lg-6 p-4">
           <input

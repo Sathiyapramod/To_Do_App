@@ -5,6 +5,10 @@
   --primary-ff: 'Hanken Grotesk', sans-serif;
 }
 
+* {
+  font-family: var(--primary-ff);
+}
+
 .App {
   text-align: center;
 }
