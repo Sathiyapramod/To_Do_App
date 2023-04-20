@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import useMediaQuery from "../hooks/useMediaQuery";
 import MenuOpenOutlinedIcon from "@mui/icons-material/MenuOpenOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import logo from "../assets/Sathiya.png";
 
 function Appbar() {
   const [mode, setMode] = useState(true);
@@ -23,7 +24,7 @@ function Appbar() {
     <div>
       {isDesktop ? (
         <div className="navbar">
-          <div className="logo">LOGO</div>
+          <div className="logo"></div>
           <div className="menu-items">
             {["HOME", "ABOUT", "PROJECT", "CONTACT"].map((element, index) => {
               return (
@@ -47,7 +48,9 @@ function Appbar() {
         </div>
       ) : (
         <div className="navbar">
-          <div className="logo">LOGO</div>
+          <div className="logo">
+            <img src={logo} width="50" height="50" alt="logo" />
+          </div>
           <div className="menu-toggled">
             <Button
               variant="outlined"
