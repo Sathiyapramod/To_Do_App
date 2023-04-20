@@ -33,6 +33,10 @@ function Appbar() {
     backgroundColor: !scrollbg ? "white" : "white",
   };
 
+  const menuLinks = {
+    color: scrollbg ? "white" : "black"
+  }
+
   return (
     <div>
       {isDesktop ? (
@@ -46,6 +50,7 @@ function Appbar() {
                   key={index}
                   rel="noreferrer"
                   className="menu-links"
+                  style={menuLinks}
                 >
                   {element}
                 </a>
