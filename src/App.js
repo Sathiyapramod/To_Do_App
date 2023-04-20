@@ -7,12 +7,9 @@ import { themeStyling } from "./Components/General";
 function App() {
   return (
     <div className="App">
-      <div className="d-flex flex-column">
+      <div>
         <Appbar />
-        <div
-          className="container-fluid bg-light p-3 contentList"
-          // style={themeStyling.bgm}
-        >
+        <div className="container-fluid bg-light p-3 contentList">
           <ToDoList />
         </div>
       </div>

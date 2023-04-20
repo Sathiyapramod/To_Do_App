@@ -61,6 +61,15 @@
   height: 100vh;
 }
 
+.setting-navbar {
+  height: 6rem;
+  width: 100vw;
+  position: fixed;
+  z-index: 1;
+  transition: background-color 0.5s ease;
+}
+
+
 .popupmenubar {
   width: 150px;
   height: 300px;
@@ -166,6 +175,9 @@
   height: 15rem;
 }
 
+.logo{
+  border-radius: 50%;
+}
 
 @media screen and (max-width:1200px) and (min-width:150px) {
   .footer>span {

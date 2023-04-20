@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextField } from "@mui/material";
 import SearchOffOutlinedIcon from "@mui/icons-material/SearchOffOutlined";
 import { createTheme } from "@mui/material/styles";
@@ -10,16 +10,34 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import logo from "../assets/Sathiya.png";
 
 function Appbar() {
-  const [mode, setMode] = useState(true);
-
+  const [scrollbg, setScrollBg] = useState(false);
   const isDesktop = useMediaQuery("(min-Width : 768px)");
   const [isMenuToggled, setMenuToggled] = useState(false);
+
+  const ChangeBackground = () => {
+    if (window.scrollY >= 60) setScrollBg(true);
+    else setScrollBg(false);
+  };
+
+  useEffect(() => {
+    ChangeBackground();
+    window.addEventListener("scroll", ChangeBackground);
+  }, []);
+
+  const navbarstyle = {
+    backgroundColor: scrollbg ? "navy" : "#FCFBFA",
+    color: scrollbg ? "white" : "black",
+  };
+
+  const logoStyle = {
+    backgroundColor: !scrollbg ? "white" : "white",
+  };
 
   return (
     <div>
       {isDesktop ? (
-        <div className="navbar">
-          <div className="logo ps-2 fs-5 fw-bolder">To Do</div>
+        <div className="navbar setting-navbar" style={navbarstyle}>
+          <div className="ps-2 fs-5 fw-bolder">To Do</div>
           <div className="menu-items">
             {["HOME", "ABOUT", "PROJECTS"].map((element, index) => {
               return (
@@ -42,9 +60,16 @@ function Appbar() {
           </div>
         </div>
       ) : (
-        <div className="navbar ps-2 pe-2">
+        <div className="navbar setting-navbar ps-2 pe-2" style={navbarstyle}>
           <div className="logo">
-            <img src={logo} width="50" height="50" alt="logo" />
+            <img
+              src={logo}
+              width="50"
+              height="50"
+              alt="logo"
+              style={logoStyle}
+              className="logo"
+            />
           </div>
           <div className="menu-toggled">
             <Button
