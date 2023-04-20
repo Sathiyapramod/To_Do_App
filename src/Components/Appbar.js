@@ -1,19 +1,9 @@
 import React, { useState } from "react";
-import AppBar from "@mui/material/AppBar";
 import { TextField } from "@mui/material";
 import SearchOffOutlinedIcon from "@mui/icons-material/SearchOffOutlined";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
-import WidgetsTwoToneIcon from "@mui/icons-material/WidgetsTwoTone";
-import { Linkstyling } from "./General";
-import WbSunnyIcon from "@mui/icons-material/WbSunny";
-import Switch from "@mui/material/Switch";
-import NightlightRoundIcon from "@mui/icons-material/NightlightRound";
-import CloseIcon from "@mui/icons-material/Close";
 import useMediaQuery from "../hooks/useMediaQuery";
 import MenuOpenOutlinedIcon from "@mui/icons-material/MenuOpenOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
@@ -26,12 +16,12 @@ function Appbar() {
     },
   });
 
+  const isDesktop = useMediaQuery("(min-Width : 1024px)");
   const [isMenuToggled, setMenuToggled] = useState(false);
-  const isDesktop = useMediaQuery("(min-Width : 768px)");
-  console.log(isDesktop);
+
   return (
     <div>
-      {isDesktop ? (
+      {!isDesktop ? (
         <div className="navbar">
           <div className="logo">LOGO</div>
           <div className="menu-items">
