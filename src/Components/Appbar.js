@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
+import { TextField } from "@mui/material";
+import SearchOffOutlinedIcon from "@mui/icons-material/SearchOffOutlined";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -13,6 +15,8 @@ import Switch from "@mui/material/Switch";
 import NightlightRoundIcon from "@mui/icons-material/NightlightRound";
 import CloseIcon from "@mui/icons-material/Close";
 import useMediaQuery from "../hooks/useMediaQuery";
+import MenuOpenOutlinedIcon from "@mui/icons-material/MenuOpenOutlined";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 function Appbar() {
   const [mode, setMode] = useState(true);
@@ -22,95 +26,80 @@ function Appbar() {
     },
   });
 
-  const [isMenuToggled, setIsMenuToggled] = useState(false);
+  const [isMenuToggled, setMenuToggled] = useState(false);
   const isDesktop = useMediaQuery("(min-Width : 768px)");
   console.log(isDesktop);
   return (
-    <ThemeProvider theme={themeChange}>
+    <div>
       {isDesktop ? (
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar
-            position="static"
-            sx={{ backgroundColor: mode ? "navy" : "dark" }}
-          >
-            <Toolbar>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                <Link to="/" style={Linkstyling}>
-                  To Do App
-                </Link>
-              </Typography>
-              <Button color="inherit">HOME</Button>
-              <Button color="inherit">About</Button>
-              <Button color="inherit">Content</Button>
-              <WbSunnyIcon />
-              <Button color="inherit">
-                <Switch onClick={() => setMode(!mode)} color="success" />
-              </Button>
-              <NightlightRoundIcon />
-            </Toolbar>
-          </AppBar>
-        </Box>
+        <div className="navbar">
+          <div className="logo">LOGO</div>
+          <div className="menu-items">
+            {["HOME", "ABOUT", "PROJECT", "CONTACT"].map((element, index) => {
+              return (
+                <a
+                  href={element}
+                  key={index}
+                  rel="noreferrer"
+                  className="menu-links"
+                >
+                  {element}
+                </a>
+              );
+            })}
+          </div>
+          <div className="search-bar">
+            <TextField id="search-bar" variant="standard" />
+            <Button variant="text">
+              <SearchOffOutlinedIcon />
+            </Button>
+          </div>
+        </div>
       ) : (
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar
-            position="static"
-            sx={{ backgroundColor: mode ? "navy" : "dark" }}
-          >
-            <Toolbar>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                <Link to="/" style={Linkstyling}>
-                  To Do App
-                </Link>
-              </Typography>
+        <div className="navbar">
+          <div className="logo">LOGO</div>
+          <div className="menu-toggled">
+            <Button
+              variant="outlined"
+              color="inherit"
+              onClick={() => {
+                setMenuToggled(!isMenuToggled);
+              }}
+            >
+              <MenuOpenOutlinedIcon />
+            </Button>
+          </div>
+        </div>
+      )}
+      {!isDesktop && isMenuToggled && (
+        <div className="toggled-menu">
+          <Box>
+            <div className="corner-button">
               <Button
-                onClick={() => setIsMenuToggled(!isMenuToggled)}
+                variant="outlined"
+                onClick={() => {
+                  setMenuToggled(!isMenuToggled);
+                }}
                 color="inherit"
               >
-                <WidgetsTwoToneIcon />
+                <CloseOutlinedIcon />
               </Button>
-              {!isDesktop && isMenuToggled && (
-                <Box sx={{ backgroundColor: mode ? "#ffab43" : "dark" }}>
-                  <div className="popupmenubar position-fixed">
-                    <Button
-                      onClick={() => setIsMenuToggled(!isMenuToggled)}
-                      color="inherit"
-                      sx={{
-                        position: "relative",
-                        left: 50,
-                        top: 5,
-                      }}
-                    >
-                      <CloseIcon />
-                    </Button>
-                    <div className="d-flex flex-column align-items-start gap-3 justify-content-between mt-3 ps-3 pt-3">
-                      <Button color="inherit" size="large">
-                        HOME
-                      </Button>
-                      <Button color="inherit" size="large">
-                        About
-                      </Button>
-                      <Button color="inherit" size="large">
-                        Content
-                      </Button>
-                    </div>
-                    <div className="d-flex flex-row align-items-center ps-4">
-                      <WbSunnyIcon />
-                      <Button color="inherit">
-                        <Switch
-                          onClick={() => setMode(!mode)}
-                          color="success"
-                        />
-                      </Button>
-                      <NightlightRoundIcon />
-                    </div>
+            </div>
+            <div className="toggled-menu-lists">
+              {["HOME", "ABOUT", "PROJECT", "CONTACT"].map((element, index) => {
+                return (
+                  <div key={index} className="menu-links">
+                    <a href={element} rel="noreferrer" className="menu-links">
+                      {element}
+                    </a>
                   </div>
-                </Box>
-              )}
-            </Toolbar>
-          </AppBar>
-        </Box>
+                );
+              })}
+            </div>
+          </Box>
+        </div>
       )}
-    </ThemeProvider>
+    </div>
   );
 }
 
