@@ -22,7 +22,7 @@ function ToDoList() {
       .then((response) => response.json())
       .then((result) => {
         setList(result.slice(startIndex, endIndex));
-        console.log(startIndex,endIndex)
+        console.log(startIndex, endIndex);
       });
   };
 
