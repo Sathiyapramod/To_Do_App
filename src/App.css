@@ -117,10 +117,11 @@
   position: fixed;
   background-color: white;
   width: 150px;
-  height: 300px;
+  height: 250px;
   top: 0px;
   bottom: 0px;
   right: 0px;
+  z-index: 1;
   border-radius: 2px;
   border: 0.25px solid grey;
 }
@@ -128,7 +129,7 @@
 .corner-button {
   position: fixed;
   top: 0px;
-  right: 20px;
+  right: 0px;
   padding-top: 1rem;
 }
 

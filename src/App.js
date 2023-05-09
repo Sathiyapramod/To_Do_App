@@ -1,8 +1,8 @@
 import Appbar from "./Components/Appbar";
 import ToDoList from "./Components/ToDoList";
+import { Routes, Route } from "react-router-dom";
 import Footer from "./Components/Footer";
 import "./App.css";
-import { themeStyling } from "./Components/General";
 
 function App() {
   return (
@@ -10,7 +10,9 @@ function App() {
       <div>
         <Appbar />
         <div className="container-fluid bg-light p-3 contentList">
-          <ToDoList />
+          <Routes>
+            <Route path="/" element={<ToDoList />} />
+          </Routes>
         </div>
       </div>
       <Footer />

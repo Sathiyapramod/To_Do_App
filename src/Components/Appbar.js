@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { TextField } from "@mui/material";
 import SearchOffOutlinedIcon from "@mui/icons-material/SearchOffOutlined";
-import { createTheme } from "@mui/material/styles";
+import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import useMediaQuery from "../hooks/useMediaQuery";
@@ -20,8 +20,10 @@ function Appbar() {
   };
 
   useEffect(() => {
-    ChangeBackground();
     window.addEventListener("scroll", ChangeBackground);
+    return () => {
+      window.removeEventListener("scroll", ChangeBackground);
+    };
   }, []);
 
   const navbarstyle = {
@@ -34,8 +36,8 @@ function Appbar() {
   };
 
   const menuLinks = {
-    color: scrollbg ? "white" : "black"
-  }
+    color: scrollbg ? "white" : "black",
+  };
 
   return (
     <div>
@@ -43,17 +45,21 @@ function Appbar() {
         <div className="navbar setting-navbar" style={navbarstyle}>
           <div className="ps-2 fs-5 fw-bolder">To Do</div>
           <div className="menu-items">
-            {["HOME", "ABOUT", "PROJECTS"].map((element, index) => {
+            {[
+              { name: "HOME", link: "/" },
+              { name: "ABOUT", link: "/about" },
+              { name: "PROJECTS", link: "/projects" },
+            ].map((element, index) => {
               return (
-                <a
-                  href={element}
+                <Link
+                  to={element.link}
                   key={index}
                   rel="noreferrer"
                   className="menu-links"
                   style={menuLinks}
                 >
-                  {element}
-                </a>
+                  {element.name}
+                </Link>
               );
             })}
           </div>
@@ -77,15 +83,17 @@ function Appbar() {
             />
           </div>
           <div className="menu-toggled">
-            <Button
-              variant="outlined"
-              color="inherit"
-              onClick={() => {
-                setMenuToggled(!isMenuToggled);
-              }}
-            >
-              <MenuOpenOutlinedIcon />
-            </Button>
+            {(
+              <Button
+                variant="floating"
+                color="inherit"
+                onClick={() => {
+                  setMenuToggled(!isMenuToggled);
+                }}
+              >
+                <MenuOpenOutlinedIcon />
+              </Button>
+            )}
           </div>
         </div>
       )}
@@ -94,22 +102,31 @@ function Appbar() {
           <Box>
             <div className="corner-button">
               <Button
-                variant="outlined"
+                variant="floating"
                 onClick={() => {
                   setMenuToggled(!isMenuToggled);
                 }}
+                size="small"
                 color="inherit"
               >
                 <CloseOutlinedIcon />
               </Button>
             </div>
             <div className="toggled-menu-lists">
-              {["HOME", "ABOUT", "PROJECT"].map((element, index) => {
+              {[
+                { name: "HOME", link: "/" },
+                { name: "ABOUT", link: "/about" },
+                { name: "PROJECTS", link: "/projects" },
+              ].map((element, index) => {
                 return (
                   <div key={index} className="menu-links">
-                    <a href={element} rel="noreferrer" className="menu-links">
-                      {element}
-                    </a>
+                    <Link
+                      to={element.link}
+                      rel="noreferrer"
+                      className="menu-links"
+                    >
+                      {element.name}
+                    </Link>
                   </div>
                 );
               })}
