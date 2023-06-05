@@ -1,29 +1,27 @@
-import React, { useState, useEffect } from "react";
-import { Typography } from "@mui/material";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import RestoreFromTrashIcon from "@mui/icons-material/RestoreFromTrash";
 import { backendAPI } from "./General";
 import EditOptions from "./EditOptions";
 import Pagination from "@mui/material/Pagination";
+import axios from "axios";
 
 function ToDoList() {
   const [toDo, setToDo] = useState("");
   const [toDoList, setList] = useState([]);
   const [defaultTask, setTask] = useState({});
   const [page, setPage] = useState(1);
-  const cardColors = ["#feff9c", "#7afcff", "#FBD489", "#E5CAAF"];
 
   const handlePageChange = (event, page) => {
     setPage(page);
     let startIndex = (page - 1) * 5;
     let endIndex = startIndex + 5;
-    fetch(`${backendAPI}/lists`)
-      .then((response) => response.json())
-      .then((result) => {
-        setList(result.slice(startIndex, endIndex));
-        console.log(startIndex, endIndex);
-      });
+
+    axios.get(`${backendAPI}/lists`).then((response) => {
+      console.log(response.data);
+      setList(response.data.slice(startIndex, endIndex));
+    });
   };
 
   return (
